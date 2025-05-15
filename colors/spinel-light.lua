@@ -1,0 +1,1 @@
+require("spinel").load("light")
