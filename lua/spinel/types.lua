@@ -3,7 +3,7 @@
 ---@field transparent? boolean
 
 ---@class spinel.Palette
----@field bg string
+---@field bg string|nil
 ---@field fg string
 ---@field accent string
 ---@field keyword string

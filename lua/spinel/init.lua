@@ -1,8 +1,6 @@
--- Spinel Neovim colorscheme (light and dark variants)
--- Usage: require('spinel').load('dark') or require('spinel').load('light')
-local config = require("spinel.config")
-
 local M = {}
+
+local config = require("spinel.config")
 
 ---@param opts? spinel.Config
 function M.load(opts)
@@ -11,6 +9,10 @@ function M.load(opts)
   local colors = require("spinel.colors")
   local style = opts.style
   local palette = colors.palettes[style] or colors.palettes.dark
+
+  if opts.transparent then
+    palette.bg = nil
+  end
 
   vim.cmd("highlight clear")
   vim.o.termguicolors = true
