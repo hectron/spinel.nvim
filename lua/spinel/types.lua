@@ -1,3 +1,7 @@
+---@class spinel.Config
+---@field style "dark"|"light"
+---@field transparent? boolean
+
 ---@class spinel.Palette
 ---@field bg string
 ---@field fg string

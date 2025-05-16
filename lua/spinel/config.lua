@@ -1,14 +1,12 @@
 local M = {}
 
----@class spinel.Config
----@field style "dark"|"light"
----@field transparent boolean
+---@type spinel.Config
 M.defaults = {
   style = "dark",
   transparent = true,
 }
 
----@type spinel.Config
+---@type spinel.Config?
 M.options = nil
 
 ---@param opts? spinel.Config
