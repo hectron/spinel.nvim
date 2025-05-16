@@ -1,66 +1,8 @@
 -- Spinel Neovim colorscheme (light and dark variants)
 -- Usage: require('spinel').load('dark') or require('spinel').load('light')
+local config = require("spinel.config")
 
 local M = {}
-
-local palettes = {
-  dark = {
-    bg         = "#2f2f2f",
-    fg         = "#d1ccf1",
-    accent     = "#d464eb",
-    keyword    = "#dd5555",
-    comment    = "#bea17f",
-    string     = "#5ac16c",
-    number     = "#eee385",
-    func       = "#d1ccf1",
-    type       = "#dd5555",
-    variable   = "#18b5e4",
-    constant   = "#ed2a88",
-    class      = "#4b82e9",
-    property   = "#eee0e0",
-    selection  = "#4b4b4b",
-    cursor     = "#d1ccf1",
-    visual     = "#3b3b3b",
-    linebg     = "#3b3b3b",
-    gutter     = "#d2cdf2",
-    status     = "#333333",
-    border     = "#404040",
-    inserted   = "#5ac16c",
-    deleted    = "#dd5555",
-    changed    = "#ff9a3b",
-    diffheader = "#18b5e4",
-    symbol     = "#7dcfcf",
-    param      = "#ff9a3b",
-  },
-  light = {
-    bg         = "#e3e2ec",
-    fg         = "#595959",
-    accent     = "#d431f5",
-    keyword    = "#c03737",
-    comment    = "#9c8262",
-    string     = "#158927",
-    number     = "#bfb23b",
-    func       = "#595959",
-    type       = "#c03737",
-    variable   = "#01a3e3",
-    constant   = "#ed2a88",
-    class      = "#1e45e0",
-    property   = "#eee0e0",
-    selection  = "#d8d8db",
-    cursor     = "#595959",
-    visual     = "#dcdaeb",
-    linebg     = "#dcdaeb",
-    gutter     = "#808080",
-    status     = "#98a4bd",
-    border     = "#acabb3",
-    inserted   = "#158927",
-    deleted    = "#c03737",
-    changed    = "#ea7d16",
-    diffheader = "#01a3e3",
-    symbol     = "#03a2a2",
-    param      = "#ea7d16",
-  }
-}
 
 local function set_highlights(p)
   local set = vim.api.nvim_set_hl
@@ -100,12 +42,18 @@ local function set_highlights(p)
   set(ns, "Todo",           { fg = p.param, bold = true, italic = true })
 end
 
-function M.load(style)
-  style = style or "dark"
-  local p = palettes[style] or palettes.dark
+---@param opts? spinel.Config
+function M.load(opts)
+  opts = require("spinel.config").extend(opts)
+  local colors = require("spinel.colors")
+  local style = opts.style
+  local p = colors.palettes[style] or colors.palettes.dark
   vim.cmd("highlight clear")
+  vim.o.termguicolors = true
   vim.o.background = style
   set_highlights(p)
 end
+
+M.setup = config.setup
 
 return M

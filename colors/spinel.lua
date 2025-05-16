@@ -1,1 +1,1 @@
-require("spinel").load("dark")
+require("spinel").load({ style = "dark", transparent = true })
